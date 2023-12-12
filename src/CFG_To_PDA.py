@@ -1,5 +1,5 @@
-from src.pda_representation import PDA
-from src.cfg_representation import CFG
+from pda_representation import PDA
+from cfg_representation import CFG
 # Write a function that can translate a CFG into a PDA following the algorithm discussed during week 8 of class
 
 def CFG_To_PDA(cfg: CFG):
@@ -31,4 +31,14 @@ def CFG_To_PDA(cfg: CFG):
     return pda
 
 
+# E → ( L )
+# E → x 
+# L → L E 
+# L → E E
 
+
+cfg = CFG(("E", "L"),("x","(",")"),
+          (("E",["(","L",")"]),("E",["x"]),("L",["L", "E"]),("L",["E","E"])),
+          "E")
+
+CFG_To_PDA(cfg)
