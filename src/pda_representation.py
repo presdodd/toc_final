@@ -38,13 +38,13 @@ class PDA:
     def checkRule(self, functions):
         for rule in functions:
             if rule[0] not in self.states:
-                raise Exception("startState = " + rule[0] + " is not in set of states")
+                raise Exception("startState = " + str(rule[0]) + " is not in set of states")
             if rule[1] not in self.states:
-                raise Exception("endState = " + rule[1] + " is not in set of states")
-            if rule[2] not in self.inputAlphabet:
-                raise Exception("terminal = " + rule[2] + " is not in set inputAlphabet")
-            if rule[3] not in self.stackAlphabet:
-                raise Exception("stack symbol = " + rule[3] + " is not in set stackAlphabet")
+                raise Exception("endState = " + str(rule[1]) + " is not in set of states")
+            if rule[2] not in self.inputAlphabet and rule[2] != "":
+                raise Exception("terminal = " + str(rule[2]) + " is not in set inputAlphabet")
+            if rule[3] not in self.stackAlphabet and rule[3] != "":
+                raise Exception("stack symbol = " + str(rule[3]) + " is not in set stackAlphabet")
         return
 
     def addRTransition(self, startState: str, endState: str, strAdded: str, stackConsumed: str):
@@ -80,3 +80,12 @@ class PDA:
         else:
             raise Exception("startState = " + startState + " is not in set of states")
         return
+
+    def PDAPrint(self):
+        print("states = "+str(self.states))
+        print("inputAlphabet = "+str(self.inputAlphabet))
+        print("stackAlphabet = "+str(self.stackAlphabet))
+        print("RTransitionFunctions = "+str(self.RTransitionFunctions))
+        print("ETransitionFunctions = " + str(self.ETransitionFunctions))
+        print("startState = " + self.startState)
+        print("acceptingStates = " + str(self.acceptingStates))

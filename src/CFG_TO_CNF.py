@@ -1,4 +1,4 @@
-from cfg_representation import CFG
+from src.cfg_representation import CFG
 #def __init__(self, nonTerminals: Set[str], terminals: Set[str],
  #                productionRules: Set[Tuple[str, List[str]]], startingSymbol: str):
 

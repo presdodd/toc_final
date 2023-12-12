@@ -32,3 +32,9 @@ class CFG:
         if startingSymbol not in nonTerminals:
             raise Exception("starting symbol = "+startingSymbol+" is not in set of nonTerminals")
         self.startingSymbol = startingSymbol # Single character that is in nonTerminals
+
+    def CFGPrint(self):
+        print("nonTerminals = "+str(self.nonTerminals))
+        print("terminals = "+str(self.terminals))
+        print("productionRules = "+str(self.productionRules))
+        print("startingSymbol = "+self.startingSymbol)
