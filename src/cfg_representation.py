@@ -20,8 +20,8 @@ class CFG:
                 raise Exception("[0] = "+rule[0]+" in production rule is not in set of nonTerminals")
             # check elements are in either terminals or nonTerminals
             for s in rule[1]:
-                if s not in terminals and s not in nonTerminals:
-                    raise Exception("[1] = "+s+" in tuple is neither in set or terminals nor in set of nonTerminals")
+                if s not in terminals and s not in nonTerminals and s != '':
+                    raise Exception("[1] = "+s+"in tuple is neither in set or terminals nor in set of nonTerminals")
 
 
         self.productionRules = productionRules # Set of tuples (input, [output])

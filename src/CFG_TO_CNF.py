@@ -1,7 +1,4 @@
-try:
-    from src.cfg_representation import CFG
-except:
-    from cfg_representation import CFG
+from src.cfg_representation import CFG
 
 def CFGtoCNF(cfg: CFG):
     #isolate the variables 
@@ -11,7 +8,6 @@ def CFGtoCNF(cfg: CFG):
     startSymbol = cfg.startingSymbol
    
     #remove ε-productions X → _  and  #Remove unit productions X → Y
-
     emptyProductions = []
     for rule in productionRules:
         rightSide = rule[1]
@@ -107,10 +103,10 @@ def CFGtoCNF(cfg: CFG):
     #complete the list of production rules
     productionRules.extend(newRules)
     #make sure the empty string is not in the terminals
-    terminals.remove('')
+    if '' in terminals:
+        terminals.remove('')
     #update the original cfg with the new values for the (non)terminals and productions
     cfg.nonTerminals = set(nonTerminals)
     cfg.productionRules = productionRules
-    cfg.terminals = terminals
+    cfg.terminals = set(terminals)
     return cfg
-
