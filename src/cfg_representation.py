@@ -3,7 +3,7 @@ from typing import Set, Tuple, List
 
 class CFG:
     def __init__(self, nonTerminals: Set[str], terminals: Set[str],
-                 productionRules: Set[Tuple[str, List[str]]], startingSymbol: str):
+                 productionRules: List[Tuple[str, List[str]]], startingSymbol: str):
 
         # make sure every element in terminals is not in nonTerminals
         for t in terminals:
