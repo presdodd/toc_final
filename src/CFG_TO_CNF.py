@@ -3,37 +3,15 @@ try:
 except:
     from cfg_representation import CFG
 
-
-# cf = CFG(("L","S","R"),("[","]","8",",",""),
-#           (("L",["[","S","]"]),
-#            ("L",["[","]"]),
-#            ("L",["8"]),
-#            ("S",["L","R"]),
-#            ("R",[""]),
-#            ("R",[",","L","R"])),
-#            "S")
-
-# cfg2 = CFG(("S"),("(",")"),
-#           (("S",["S","S"]),
-#            ("S",["(","S",")"]),
-#            ("S",[""])),
-#            "S")
-
-
-#printer function that print a list of productions into a readable form. 
-# def printer(rules):
-#     for rule in rules:
-#         print(rule[0], "→", "".join(rule[1]))
-
-
-
 def CFGtoCNF(cfg: CFG):
+    #isolate the variables 
     nonTerminals = set(cfg.nonTerminals)
     terminals = list(cfg.terminals)
     productionRules = list(cfg.productionRules)
     startSymbol = cfg.startingSymbol
    
     #remove ε-productions X → _  and  #Remove unit productions X → Y
+
     emptyProductions = []
     for rule in productionRules:
         rightSide = rule[1]
@@ -42,30 +20,22 @@ def CFGtoCNF(cfg: CFG):
             emptyProductions.append(leftSide)
             productionRules.remove(rule)
     
+    #find all rules that contain the leftside Nonterminal of an eproduction
+    #create a new rule for each rule that had that leftside Noterminal but erased.
     newRules = []
     for source in emptyProductions:
         for rule in productionRules:
             rightSide = rule[1]
             if source in rightSide:
-                
-                dumby = rightSide.copy()
-                dumby.remove(source)
-                
-                newRightSide = dumby
-                
-                
+                temp = rightSide.copy()
+                temp.remove(source)
+                newRightSide = temp
                 newProductionRule = (rule[0],newRightSide)
-                
-                
                 newRules.append(newProductionRule)
-    
-
     for i in newRules:
         productionRules.append(i)
 
- 
-
- 
+    #remove all productions with a single non terminal on right 
     for i in productionRules:
         if len (i[1]) == 1:
             for j in i[1]:
@@ -73,14 +43,14 @@ def CFGtoCNF(cfg: CFG):
                     if str(q) == i[1][0]:
                         productionRules.remove(i)
   
-
-
+    #to create new productions of new Nonterminal names, start at capital A. If A already
+    #exists, pick the next one after. 
     letter = ord('A')
     if chr(letter) in nonTerminals:
         letter += 1
     
     updateDict = {}
-
+    #identify all terminals and create a B -> b proudction accordingly 
     for terminal in terminals:
         if terminal == [''] or terminal == '':
             continue
@@ -91,6 +61,8 @@ def CFGtoCNF(cfg: CFG):
         productionRules.append(newRule)
         letter += 1
 
+    #replace all non terminal symbols with the terminal symobls.
+    #for example, S -> ( S ), replace ( with A and ) with B and so on
     for rule in productionRules:
         if rule[0] in updateDict.values():
             continue
@@ -106,6 +78,8 @@ def CFGtoCNF(cfg: CFG):
                 rightSide[index] = updateDict[term]
         newRule = (rule[0],rightSide)
 
+    #if there is a rule with a rightside production longer that 2, create new productions
+    #to shorten the length. For example, S -> ABC turns into S -> AD with D -> BC
     newRules = []
     for rule in productionRules:
 
@@ -130,8 +104,11 @@ def CFGtoCNF(cfg: CFG):
                 length -= 1
             productionRules[index] = (rule[0],rightSide)
 
+    #complete the list of production rules
     productionRules.extend(newRules)
+    #make sure the empty string is not in the terminals
     terminals.remove('')
+    #update the original cfg with the new values for the (non)terminals and productions
     cfg.nonTerminals = set(nonTerminals)
     cfg.productionRules = productionRules
     cfg.terminals = terminals
