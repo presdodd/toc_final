@@ -8,7 +8,7 @@ R ->
 R -> , L R
 
 given to function as...
-cfg = CFG(("L","S","R"),("8","[","]",",",""),
+test1 = CFG(("L","S","R"),("[","]","8",",",""),
           (("L",["[","S","]"]),
            ("L",["[","]"]),
            ("L",["8"]),
@@ -18,12 +18,54 @@ cfg = CFG(("L","S","R"),("8","[","]",",",""),
            "S")
 
 
-should return 
+should return (when printed out for readability)
+L → AE
+L → AB
+L → 8
+S → LR
+R → DF
+R → DL
+A → [
+B → ]
+C → 8
+D → ,
+E → SB
+F → LR
 
-L -> [ S 
-->
-->
-->
-->
-->
-->
+ACTUAL returned CFG in CNF from 
+
+
+
+
+
+
+Test 2 input:
+ 
+S -> SS
+S -> (S)
+S -> 
+
+given as...
+test2 = CFG(("S"),("(",")"),
+          (("S",["S","S"]),
+           ("S",["(","S",")"]),
+           ("S",[""])),
+           "S")
+
+should return (when printed out for readability)
+
+S -> AC
+S -> SS
+S -> AB
+A -> (
+B -> )
+C -> SB
+
+ACTUAL returned CFG in CNF from 
+
+
+
+
+
+
+

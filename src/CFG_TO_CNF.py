@@ -4,32 +4,32 @@ except:
     from cfg_representation import CFG
 
 
-cfg = CFG(("L","S","R"),("[","]","8",",",""),
-          (("L",["[","S","]"]),
-           ("L",["[","]"]),
-           ("L",["8"]),
-           ("S",["L","R"]),
-           ("R",[""]),
-           ("R",[",","L","R"])),
-           "S")
+# cf = CFG(("L","S","R"),("[","]","8",",",""),
+#           (("L",["[","S","]"]),
+#            ("L",["[","]"]),
+#            ("L",["8"]),
+#            ("S",["L","R"]),
+#            ("R",[""]),
+#            ("R",[",","L","R"])),
+#            "S")
 
-cfg2 = CFG(("S"),("(",")"),
-          (("S",["S","S"]),
-           ("S",["(","S",")"]),
-           ("S",[""])),
-           "S")
+# cfg2 = CFG(("S"),("(",")"),
+#           (("S",["S","S"]),
+#            ("S",["(","S",")"]),
+#            ("S",[""])),
+#            "S")
 
 
-
-def printer(rules):
-    for rule in rules:
-        print(rule[0], "→", "".join(rule[1]))
+#printer function that print a list of productions into a readable form. 
+# def printer(rules):
+#     for rule in rules:
+#         print(rule[0], "→", "".join(rule[1]))
 
 
 
 def CFGtoCNF(cfg: CFG):
     nonTerminals = set(cfg.nonTerminals)
-    terminals = cfg.terminals
+    terminals = list(cfg.terminals)
     productionRules = list(cfg.productionRules)
     startSymbol = cfg.startingSymbol
    
@@ -121,21 +121,19 @@ def CFGtoCNF(cfg: CFG):
                 if chr(letter) in nonTerminals:
                     letter += 1
                 newRule = (str(newLetter),[letter1,letter2])
+                nonTerminals.add(str(newLetter))
+
                 newRules.append(newRule)
                 rightSide.remove(letter1)
                 rightSide.remove(letter2)
                 rightSide.append(newLetter)
                 length -= 1
             productionRules[index] = (rule[0],rightSide)
-            
 
-    for i in newRules:
-        productionRules.append(i)
-    printer(productionRules)
+    productionRules.extend(newRules)
+    terminals.remove('')
+    cfg.nonTerminals = set(nonTerminals)
+    cfg.productionRules = productionRules
+    cfg.terminals = terminals
+    return cfg
 
-
-
-#note that my use of the "letter" variable will overlap preexisting letters
-
-
-CFGtoCNF(cfg2)
