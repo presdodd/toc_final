@@ -1,76 +1,104 @@
-Testing results for CFG to CNF, successful 
-Testing results for CFG to CNF, successful 
-Testing results for CFG to CNF, successful 
+------------------------------------------------------------------------------------------------------------------------
+Testing CFG_To_PDA.py
+------------------------------------------------------------------------------------------------------------------------
+/usr/local/bin/python3.8 "/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/pycharm/_jb_unittest_runner.py" --target CFG_TO_PDA_TESTS.TestCFG_To_PDA
+Launching unittests with arguments python -m unittest CFG_TO_PDA_TESTS.TestCFG_To_PDA in /Users/prestondodd/Documents/GitHub/toc_final/src
 
-
-----------------------------------------------------------------------
-Ran 2 tests in 0.011s
-
-OK
-
-C:\Users\prent\OneDrive\Desktop\CS4430\toc_final\src>python -m unittest CFG_TO_CNF_TESTS.py
-
-
-testing cnf1 production rules, terminals and nonterminals
-.
-
-testing cnf2 production rules, terminals and nonterminals
-.
-----------------------------------------------------------------------
-Ran 2 tests in 0.009s
-
-OK
-
-
-Testing results for CFG to PDA, successful
-Testing results for CFG to PDA, successful
-Testing results for CFG to PDA, successful
-
-
-----------------------------------------------------------------------
-Ran 3 tests in 0.048s
-
-OK
-
-C:\Users\prent\OneDrive\Desktop\CS4430\toc_final\src>python -m unittest CFG_TO_PDA_TESTS.py
+INPUT:
 nonTerminals = {'L', 'E'}
-terminals = {')', 'x', '('}
+terminals = {'(', 'x', ')'}
 productionRules = [('E', ['(', 'L', ')']), ('E', ['x']), ('L', ['L', 'E']), ('L', ['E', 'E'])]
 startingSymbol = E
 
 
-states = {'7', '15', '6', '5', '8', '14', '3', '16', '10', '2', '1', '9', '4', '13', '12', '11'}
-inputAlphabet = {')', 'x', '('}
-stackAlphabet = {'x', 'T', 'E', '(', ')', 'L'}
-RTransitionFunctions = {('3', '5', '', 'E'), ('3', '9', '', 'E'), ('3', '3', 'x', 'x'), ('3', '3', ')', ')'), ('3', '11', '', 'L'), ('3', '3', '(', '('), ('3', '4', '', 'T'), ('3', '14', '', 'L')}
-ETransitionFunctions = {('16', '3', '', ''), ('15', '16', '', 'E'), ('6', '7', '', 'L'), ('12', '13', '', 'L'), ('14', '15', '', 'E'), ('13', '3', '', ''), ('1', '2', '', 'T'), ('2', '3', '', 'E'), ('9', '10', '', 'x'), ('10', '3', '', ''), ('5', '6', '', ')'), ('7', '8', '', '('), ('11', '12', '', 'E'), ('8', '3', '', '')}
+OUTPUT:
+states = {'4', '7', '12', '8', '11', '10', '15', '2', '13', '3', '9', '6', '16', '14', '5', '1'}
+inputAlphabet = {'x', '(', ')'}
+stackAlphabet = {'L', 'T', '(', ')', 'x', 'E'}
+RTransitionFunctions = {('3', '11', '', 'L'), ('3', '3', '(', '('), ('3', '14', '', 'L'), ('3', '3', ')', ')'), ('3', '5', '', 'E'), ('3', '4', '', 'T'), ('3', '3', 'x', 'x'), ('3', '9', '', 'E')}
+ETransitionFunctions = {('15', '16', '', 'E'), ('8', '3', '', ''), ('11', '12', '', 'E'), ('14', '15', '', 'E'), ('6', '7', '', 'L'), ('1', '2', '', 'T'), ('7', '8', '', '('), ('10', '3', '', ''), ('16', '3', '', ''), ('2', '3', '', 'E'), ('9', '10', '', 'x'), ('12', '13', '', 'L'), ('5', '6', '', ')'), ('13', '3', '', '')}
 startState = 1
 acceptingStates = {'4'}
-.nonTerminals = {'C', 'A', 'S'}
+
+
+INPUT:
+nonTerminals = {'A', 'C', 'S'}
 terminals = {'b', 'a'}
 productionRules = [('S', ['A', 'b']), ('S', ['b', 'A']), ('A', ['C', 'A', 'C']), ('A', ['a']), ('C', ['a']), ('C', ['b'])]
 startingSymbol = S
 
 
-states = {'7', '15', '6', '14', '19', '2', '1', '13', '17', '8', '18', '3', '20', '4', '16', '5', '10', '9', '12', '11'}
+OUTPUT:
+states = {'4', '12', '8', '15', '9', '20', '17', '16', '5', '10', '1', '3', '13', '6', '14', '7', '19', '11', '2', '18'}
 inputAlphabet = {'b', 'a'}
-stackAlphabet = {'A', 'b', 'T', 'C', 'a', 'S'}
-RTransitionFunctions = {('3', '5', '', 'S'), ('3', '19', '', 'C'), ('3', '3', 'b', 'b'), ('3', '17', '', 'C'), ('3', '11', '', 'A'), ('3', '3', 'a', 'a'), ('3', '4', '', 'T'), ('3', '15', '', 'A'), ('3', '8', '', 'S')}
-ETransitionFunctions = {('16', '3', '', ''), ('17', '18', '', 'a'), ('12', '13', '', 'A'), ('7', '3', '', ''), ('2', '3', '', 'S'), ('1', '2', '', 'T'), ('6', '7', '', 'A'), ('9', '10', '', 'b'), ('15', '16', '', 'a'), ('18', '3', '', ''), ('20', '3', '', ''), ('14', '3', '', ''), ('5', '6', '', 'b'), ('10', '3', '', ''), ('13', '14', '', 'C'), ('19', '20', '', 'b'), ('11', '12', '', 'C'), ('8', '9', '', 'A')}
+stackAlphabet = {'A', 'T', 'b', 'a', 'C', 'S'}
+RTransitionFunctions = {('3', '11', '', 'A'), ('3', '19', '', 'C'), ('3', '15', '', 'A'), ('3', '3', 'a', 'a'), ('3', '4', '', 'T'), ('3', '8', '', 'S'), ('3', '5', '', 'S'), ('3', '3', 'b', 'b'), ('3', '17', '', 'C')}
+ETransitionFunctions = {('11', '12', '', 'C'), ('19', '20', '', 'b'), ('2', '3', '', 'S'), ('20', '3', '', ''), ('7', '3', '', ''), ('15', '16', '', 'a'), ('18', '3', '', ''), ('1', '2', '', 'T'), ('6', '7', '', 'A'), ('9', '10', '', 'b'), ('8', '9', '', 'A'), ('10', '3', '', ''), ('13', '14', '', 'C'), ('16', '3', '', ''), ('17', '18', '', 'a'), ('5', '6', '', 'b'), ('14', '3', '', ''), ('12', '13', '', 'A')}
 startState = 1
 acceptingStates = {'4'}
-.nonTerminals = {'1'}
+
+
+INPUT:
+nonTerminals = {'1'}
 terminals = {'b'}
 productionRules = [('1', ['b'])]
 startingSymbol = 1
 
 
-states = {'6', '5', '3', '2', '1', '4'}
+OUTPUT:
+states = {'4', '2', '3', '6', '5', '1'}
 inputAlphabet = {'b'}
-stackAlphabet = {'b', 'T', '1'}
-RTransitionFunctions = {('3', '4', '', 'T'), ('3', '5', '', '1'), ('3', '3', 'b', 'b')}
-ETransitionFunctions = {('6', '3', '', ''), ('5', '6', '', 'b'), ('2', '3', '', '1'), ('1', '2', '', 'T')}
+stackAlphabet = {'T', 'b', '1'}
+RTransitionFunctions = {('3', '3', 'b', 'b'), ('3', '4', '', 'T'), ('3', '5', '', '1')}
+ETransitionFunctions = {('5', '6', '', 'b'), ('2', '3', '', '1'), ('1', '2', '', 'T'), ('6', '3', '', '')}
 startState = 1
 acceptingStates = {'4'}
 
 
+
+Ran 3 tests in 0.008s
+
+OK
+
+------------------------------------------------------------------------------------------------------------------------
+Testing CFG_TO_CNF.py
+------------------------------------------------------------------------------------------------------------------------
+
+/usr/local/bin/python3.8 "/Applications/PyCharm CE.app/Contents/plugins/python-ce/helpers/pycharm/_jb_unittest_runner.py" --target CFG_TO_CNF_TESTS.TestCFGtoCNF
+Launching unittests with arguments python -m unittest CFG_TO_CNF_TESTS.TestCFGtoCNF in /Users/prestondodd/Documents/GitHub/toc_final/src
+
+INPUT:
+nonTerminals = {'S', 'L', 'R'}
+terminals = ('[', ']', '8', ',')
+productionRules = [('L', ['[', 'S', ']']), ('L', ['[', ']']), ('L', ['8']), ('S', ['L', 'R']), ('R', ['']), ('R', [',', 'L', 'R'])]
+startingSymbol = S
+
+
+OUTPUT:
+nonTerminals = {'C', 'B', 'D', 'F', 'S', 'A', 'E', 'R', 'L'}
+terminals = {']', '8', ',', '['}
+productionRules = [('L', ['A', 'E']), ('L', ['A', 'B']), ('L', ['8']), ('S', ['L', 'R']), ('R', ['D', 'F']), ('R', ['D', 'L']), ('A', ['[']), ('B', [']']), ('C', ['8']), ('D', [',']), ('E', ['S', 'B']), ('F', ['L', 'R'])]
+startingSymbol = S
+
+
+testing cnf1 production rules, terminals and nonterminals
+INPUT:
+nonTerminals = S
+terminals = ('(', ')')
+productionRules = (('S', ['S', 'S']), ('S', ['(', 'S', ')']), ('S', ['']))
+startingSymbol = S
+
+
+OUTPUT:
+nonTerminals = {'C', 'S', 'A', 'B'}
+terminals = {')', '('}
+productionRules = [('S', ['S', 'S']), ('S', ['A', 'C']), ('S', ['A', 'B']), ('A', ['(']), ('B', [')']), ('C', ['S', 'B'])]
+startingSymbol = S
+
+
+testing cnf2 production rules, terminals and nonterminals
+
+
+Ran 2 tests in 0.006s
+
+OK

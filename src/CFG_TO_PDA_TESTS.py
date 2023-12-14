@@ -9,10 +9,13 @@ class TestCFG_To_PDA(unittest.TestCase):
         cfg1 = CFG({"E", "L"}, {"x", "(", ")"},
                    [("E", ["(", "L", ")"]), ("E", ["x"]), ("L", ["L", "E"]), ("L", ["E", "E"])],
                   "E")
+        print("INPUT:")
         cfg1.CFGPrint()
         print("\n")
         pda1 = CFG_To_PDA(cfg1)
+        print("OUTPUT:")
         pda1.PDAPrint()
+        print("\n")
 
         correctPda1 = PDA(
             {'1', '11', '6', '7', '13', '8', '4', '2', '14', '16', '10', '15', '3', '9', '5', '12'},
@@ -36,11 +39,13 @@ class TestCFG_To_PDA(unittest.TestCase):
             [('S', ['A', 'b']), ('S', ['b', 'A']), ('A', ['C', 'A', 'C']), ('A', ['a']), ('C', ['a']), ('C', ['b'])],
             'S'
         )
-
+        print("INPUT:")
         cfg2.CFGPrint()
         print("\n")
         pda2 = CFG_To_PDA(cfg2)
+        print("OUTPUT:")
         pda2.PDAPrint()
+        print("\n")
 
         correctPda2 = PDA(
             {'10', '8', '15', '9', '13', '18', '17', '19', '2', '20', '14', '11', '12', '4', '1', '7', '3', '5', '6', '16'},
@@ -58,13 +63,16 @@ class TestCFG_To_PDA(unittest.TestCase):
         self.assertEqual(self.checkPdaEquals(pda2, correctPda2), True)
 
     def test3(self):
+        print("INPUT:")
         cfg3 = CFG({"1"}, {"b"},
                    [('1', ['b'])],
                    "1")
         cfg3.CFGPrint()
         print("\n")
         pda3 = CFG_To_PDA(cfg3)
+        print("OUTPUT:")
         pda3.PDAPrint()
+        print("\n")
 
         correctPda3 = PDA(
             {'1', '4', '2', '3', '5', '6'},

@@ -34,16 +34,3 @@ def CFG_To_PDA(cfg: CFG):
         pda.addRTransition("3", "3", t, t)
 
     return pda
-
-
-# E → ( L )
-# E → x 
-# L → L E 
-# L → E E
-
-
-# cfg = CFG(("E", "L"),("x","(",")"),
-#           (("E",["(","L",")"]),("E",["x"]),("L",["L", "E"]),("L",["E","E"])),
-#           "E")
-#
-# CFG_To_PDA(cfg)

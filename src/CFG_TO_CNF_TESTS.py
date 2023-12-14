@@ -12,10 +12,14 @@ class TestCFGtoCNF(unittest.TestCase):
                      ("R",[""]),
                      ("R",[",","L","R"])]),
                      "S")
-        #cfg1.CFGPrint()
+        print("INPUT:")
+        cfg1.CFGPrint()
         print("\n")
         cnf1 = CFGtoCNF(cfg1)
-        #cnf1.CFGPrint()
+        print("OUTPUT:")
+        cnf1.CFGPrint()
+        print("\n")
+
         correctCNF1 = CFG({"L","S","R","A","B","C","D","E","F"},{"[","]","8",","},
                           ([("L",["A","E"]),
                             ("L",["A","B"]), 
@@ -41,10 +45,13 @@ class TestCFGtoCNF(unittest.TestCase):
            ("S",["(","S",")"]),
            ("S",[""])),
            "S")
-        #cfg2.CFGPrint()
+        print("INPUT:")
+        cfg2.CFGPrint()
         print("\n")
         cnf2 = CFGtoCNF(cfg2)
-        #cnf2.CFGPrint()
+        print("OUTPUT:")
+        cnf2.CFGPrint()
+        print("\n")
         correctCNF2 = CFG({"S","A","B","C"},{"(",")"},
                           ([("S",["S","S"]), 
                             ("S",["A","C"]), 
